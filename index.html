@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#02030a">
+<meta name="description" content="Eastern Dynamics Defence — Advanced defence technology, autonomous systems, aerospace engineering and mission systems.">
+<title>Eastern Dynamics — Defence</title>
+<style>
+:root{
+--black:#02030a;--deep:#050713;--panel:#090c18;--white:#f4f7ff;
+--muted:#8790a4;--line:rgba(255,255,255,.10);--cyan:#d9ff00;
+--blue:#8ea000;--violet:#a8c900;--max:1480px;--nav:76px
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--black);color:var(--white);scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+body.menu-open{overflow:hidden} a{color:inherit;text-decoration:none} button{font:inherit}
+.container{width:min(calc(100% - 48px),var(--max));margin:auto}
+.section{position:relative;padding:140px 0}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--cyan);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700}
+.eyebrow:before{content:"";width:30px;height:1px;background:var(--cyan)}
+.section-title{max-width:1000px;margin-top:24px;font-size:clamp(2.8rem,6vw,7rem);line-height:.9;letter-spacing:-.065em;font-weight:600}
+.section-copy{max-width:650px;margin-top:30px;color:var(--muted);line-height:1.85;font-size:.98rem}
+.btn{min-height:52px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid var(--line);border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;transition:.3s ease}
+.btn-primary{color:#02030a;background:var(--white);border-color:var(--white)}
+.btn-primary:hover{background:var(--cyan);border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 15px 45px rgba(118,229,255,.14)}
+.btn-ghost{background:rgba(255,255,255,.035)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.arrow{transition:.3s}.btn:hover .arrow{transform:translateX(5px)}
+
+.stars{position:absolute;inset:0;pointer-events:none;opacity:.55;background-image:
+radial-gradient(circle at 20% 30%,rgba(255,255,255,.8) 0 1px,transparent 1.5px),
+radial-gradient(circle at 70% 20%,rgba(255,255,255,.5) 0 1px,transparent 1.5px),
+radial-gradient(circle at 45% 70%,rgba(255,255,255,.6) 0 1px,transparent 1.5px),
+radial-gradient(circle at 90% 65%,rgba(255,255,255,.55) 0 1px,transparent 1.5px),
+radial-gradient(circle at 12% 85%,rgba(255,255,255,.45) 0 1px,transparent 1.5px);
+background-size:300px 300px,450px 450px,370px 370px,500px 500px,410px 410px;animation:starMove 45s linear infinite}
+@keyframes starMove{to{transform:translateY(-180px)}}
+
+.nav{position:fixed;top:0;left:0;width:100%;height:var(--nav);z-index:1000;border-bottom:1px solid transparent;transition:.35s ease}
+.nav.scrolled{background:rgba(2,3,10,.72);backdrop-filter:blur(22px);border-color:var(--line)}
+.nav-inner{width:min(calc(100% - 48px),var(--max));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px;font-size:.84rem;font-weight:800;letter-spacing:.16em}
+.logo-mark{width:29px;height:29px;position:relative;border:1px solid rgba(255,255,255,.75);border-radius:50%}
+.logo-mark:before{content:"";position:absolute;width:8px;height:8px;left:9px;top:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.logo-mark:after{content:"";position:absolute;width:44px;height:13px;left:-9px;top:7px;border:1px solid rgba(118,229,255,.55);border-radius:50%;transform:rotate(-25deg)}
+.nav-links{display:flex;align-items:center;gap:32px}.nav-links a{color:#929bae;font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;transition:.25s}.nav-links a:hover{color:white}
+.nav-right{display:flex;align-items:center;gap:15px}.nav-cta{min-height:40px;padding:0 16px;font-size:.59rem}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:white;border-radius:50%;cursor:pointer}
+.menu-btn span,.menu-btn span:before,.menu-btn span:after{content:"";display:block;width:17px;height:1px;background:white;margin:auto;position:relative;transition:.25s}
+.menu-btn span:before{position:absolute;top:-6px}.menu-btn span:after{position:absolute;top:6px}
+.mobile-menu{position:fixed;inset:0;z-index:900;background:rgba(2,3,10,.97);backdrop-filter:blur(25px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s}
+.mobile-menu.open{opacity:1;visibility:visible}.mobile-links{display:flex;flex-direction:column;align-items:center;gap:27px}.mobile-links a{font-size:clamp(1.8rem,7vw,3rem);letter-spacing:-.05em;font-weight:600}
+
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:radial-gradient(circle at 50% 45%,rgba(77,113,255,.15),transparent 30%),#02030a}
+.hero-image{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,3,10,.92),rgba(2,3,10,.28) 55%,rgba(2,3,10,.7)),linear-gradient(0deg,rgba(2,3,10,.94),transparent 60%),url("https://images.unsplash.com/photo-1517976547714-720226b864c1?auto=format&fit=crop&w=2400&q=90") center/cover no-repeat;filter:saturate(.65) contrast(1.08);transform:scale(1.06);animation:heroZoom 20s ease-out forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-glow{position:absolute;width:65vw;height:65vw;right:-20vw;top:-20vw;border-radius:50%;background:radial-gradient(circle,rgba(93,141,255,.16),transparent 65%);filter:blur(25px)}
+.hero-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(118,229,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(118,229,255,.04) 1px,transparent 1px);background-size:100px 100px}
+.hero-content{position:relative;z-index:2;width:min(calc(100% - 48px),var(--max));margin:auto;padding:calc(var(--nav) + 80px) 0 65px}
+.hero-kicker{display:flex;align-items:center;gap:10px;color:#b7c1d5;font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:26px}
+.status{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.hero h1{max-width:1100px;font-size:clamp(4rem,11vw,11.5rem);line-height:.77;letter-spacing:-.08em;font-weight:600}.hero h1 span{color:var(--cyan)}
+.hero-sub{max-width:660px;margin-top:36px;color:#adb6c8;font-size:.98rem;line-height:1.8}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:55px;margin-top:60px;color:#697387;font-size:.61rem;letter-spacing:.16em;text-transform:uppercase}
+.hero-meta strong{display:block;margin-top:8px;color:#e6ebf5;font-size:.7rem;letter-spacing:.08em}
+.orbit-line{position:absolute;width:620px;height:230px;right:-70px;top:35%;border:1px solid rgba(118,229,255,.16);border-radius:50%;transform:rotate(-18deg);opacity:.8}
+.orbit-line:after{content:"";position:absolute;width:8px;height:8px;right:18%;top:7%;border-radius:50%;background:var(--cyan);box-shadow:0 0 20px var(--cyan),0 0 45px rgba(118,229,255,.5);animation:satellite 6s linear infinite}
+@keyframes satellite{from{transform:rotate(0deg) translateX(0)}50%{transform:translate(-220px,110px)}to{transform:translate(0,0)}}
+
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#03050c}.ticker-track{display:flex;width:max-content;animation:ticker 32s linear infinite}.ticker-item{padding:19px 36px;color:#687186;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}.ticker-item:before{content:"✦";color:var(--cyan);margin-right:36px}@keyframes ticker{to{transform:translateX(-50%)}}
+
+.intro{background:radial-gradient(circle at 80% 20%,rgba(93,141,255,.06),transparent 30%),#040610}.intro-layout{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:end}.intro-title{font-size:clamp(2.8rem,5vw,5.8rem);line-height:.92;letter-spacing:-.065em}.intro-title em{color:#5d667a;font-style:normal}.intro-right p{color:var(--muted);line-height:1.85}.intro-right .btn{margin-top:30px}
+
+.capabilities{background:#02030a}.cap-grid{margin-top:80px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cap-card{position:relative;min-height:320px;padding:31px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;transition:.35s}
+.cap-card:before{content:"";position:absolute;width:260px;height:260px;right:-140px;bottom:-140px;border-radius:50%;background:radial-gradient(circle,rgba(118,229,255,.14),transparent 65%);opacity:0;transition:.4s}
+.cap-card:hover{background:#060916}.cap-card:hover:before{opacity:1}.cap-number{color:#4f596d;font-size:.65rem;letter-spacing:.16em}
+.cap-icon{width:45px;height:45px;margin-top:70px;display:grid;place-items:center;border:1px solid #394357;color:var(--cyan);font-size:.7rem;border-radius:50%}
+.cap-card h3{margin-top:23px;font-size:1.22rem;letter-spacing:-.025em}.cap-card p{max-width:330px;margin-top:11px;color:#70798d;font-size:.83rem;line-height:1.7}
+
+.orbit-feature{padding-top:35px;background:#02030a}.earth-panel{min-height:720px;position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(90deg,rgba(2,3,10,.95),rgba(2,3,10,.38),rgba(2,3,10,.65)),url("https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=2400&q=90") center/cover no-repeat}
+.earth-panel:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 50%,transparent 0 20%,rgba(2,3,10,.2) 35%,rgba(2,3,10,.9) 100%)}
+.earth-content{position:absolute;z-index:2;left:55px;bottom:55px;max-width:720px}.earth-tag{color:var(--cyan);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:20px}.earth-content h2{font-size:clamp(3rem,7vw,7rem);line-height:.85;letter-spacing:-.07em}.earth-content p{max-width:590px;margin-top:26px;color:#a3adbf;line-height:1.75}
+
+.systems{background:#050714}.systems-header{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}.system-list{margin-top:75px;border-top:1px solid var(--line)}
+.system{display:grid;grid-template-columns:90px 1fr 2fr 50px;gap:30px;align-items:center;padding:34px 0;border-bottom:1px solid var(--line);transition:.3s}
+.system:hover{padding-left:15px;padding-right:15px;background:linear-gradient(90deg,rgba(118,229,255,.025),transparent)}.system-no{color:#4e576a;font-size:.66rem;letter-spacing:.14em}.system-name{font-size:1.3rem;font-weight:600;letter-spacing:-.035em}.system-desc{color:#727c91;font-size:.83rem;line-height:1.65}.system-arrow{color:var(--cyan);font-size:1.2rem}
+
+.stats{background:#02030a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}.stat{padding:58px 30px;border-right:1px solid var(--line)}.stat:last-child{border-right:0}.stat-number{font-size:clamp(2.8rem,5vw,5.2rem);line-height:1;letter-spacing:-.07em}.stat-number span{color:var(--cyan)}.stat-label{margin-top:15px;color:#606a7d;font-size:.61rem;letter-spacing:.16em;text-transform:uppercase}
+
+.technology{background:radial-gradient(circle at 50% 0,rgba(118,229,255,.055),transparent 42%),#050714}.tech-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.space-map{min-height:590px;position:relative;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at center,rgba(76,122,255,.11),transparent 30%),#03050d}
+.space-map:before{content:"";position:absolute;width:450px;height:450px;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(118,229,255,.15);border-radius:50%;box-shadow:0 0 100px rgba(85,122,255,.06)}
+.space-map:after{content:"";position:absolute;width:680px;height:260px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-23deg);border:1px solid rgba(118,229,255,.13);border-radius:50%}
+.map-orbit{position:absolute;width:300px;height:110px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(15deg);border:1px solid rgba(169,140,255,.2);border-radius:50%}
+.map-earth{position:absolute;width:130px;height:130px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 35%,#b9e9ff,#4c81c7 42%,#172a57 72%,#050816 100%);box-shadow:0 0 60px rgba(73,132,255,.3)}
+.map-earth:after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(118,229,255,.22)}
+.map-node{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}.node-1{left:21%;top:31%}.node-2{right:21%;top:28%}.node-3{right:26%;bottom:27%}
+.map-label{position:absolute;padding:7px 10px;background:rgba(2,3,10,.8);border:1px solid var(--line);color:#7f8ba2;font-size:.53rem;letter-spacing:.13em;text-transform:uppercase}.label-a{left:11%;top:26%}.label-b{right:10%;top:23%}.label-c{right:12%;bottom:21%}
+.tech-list{margin-top:45px;border-top:1px solid var(--line)}.tech-item{display:flex;justify-content:space-between;gap:20px;padding:19px 0;border-bottom:1px solid var(--line);color:#b3bdce;font-size:.8rem}.tech-item span{color:#4f596c}
+
+.cta{min-height:650px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(2,3,10,.95),rgba(2,3,10,.68),rgba(2,3,10,.92)),url("https://images.unsplash.com/photo-1517976547714-720226b864c1?auto=format&fit=crop&w=2400&q=90") center/cover no-repeat}
+.cta-inner{width:min(calc(100% - 48px),var(--max));margin:auto}.cta h2{max-width:1100px;font-size:clamp(3.3rem,8vw,9rem);line-height:.8;letter-spacing:-.08em}.cta p{max-width:590px;margin:34px 0;color:#939db1;line-height:1.75}
+
+footer{background:#010207;border-top:1px solid var(--line)}.footer-main{padding:82px 0;display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:55px}.footer-brand p{max-width:340px;margin-top:25px;color:#5d6678;font-size:.8rem;line-height:1.8}.footer-column h4{margin-bottom:22px;color:#cbd2df;font-size:.61rem;letter-spacing:.18em;text-transform:uppercase}.footer-column a{display:block;margin-bottom:14px;color:#626c80;font-size:.76rem;transition:.2s}.footer-column a:hover{color:white}.footer-bottom{padding:24px 0;display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);color:#454d5e;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:1100px){
+.nav-links{display:none}.nav-cta{display:none}.menu-btn{display:block}
+.intro-layout,.tech-layout{grid-template-columns:1fr;gap:55px}.cap-grid{grid-template-columns:repeat(2,1fr)}
+.system{grid-template-columns:70px 1fr 1.5fr 30px}.footer-main{grid-template-columns:1.5fr 1fr 1fr}.footer-column:last-child{display:none}
+}
+@media(max-width:720px){
+:root{--nav:66px}.container,.hero-content,.cta-inner,.nav-inner{width:min(calc(100% - 30px),var(--max))}
+.section{padding:92px 0}.hero-content{padding:calc(var(--nav) + 55px) 0 42px}.hero h1{font-size:clamp(3.8rem,19vw,7rem)}
+.hero-sub{font-size:.87rem;line-height:1.7}.hero-buttons{flex-direction:column;align-items:stretch}.hero-buttons .btn{width:100%}
+.hero-meta{gap:25px;display:grid;grid-template-columns:1fr 1fr}.hero-image{background-position:60% center}.orbit-line{width:430px;right:-210px}
+.cap-grid{grid-template-columns:1fr;margin-top:55px}.cap-card{min-height:280px}.earth-panel{min-height:570px}.earth-content{left:25px;right:25px;bottom:30px}
+.systems-header{display:block}.system{grid-template-columns:45px 1fr 25px;gap:14px;padding:26px 0}.system-desc{grid-column:2 / -1}
+.stats-grid{grid-template-columns:1fr 1fr}.stat{padding:38px 20px}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.space-map{min-height:410px}.space-map:before{width:300px;height:300px}.map-earth{width:95px;height:95px}.cta{min-height:540px}
+.footer-main{grid-template-columns:1fr 1fr;gap:40px 25px;padding:60px 0}.footer-brand{grid-column:1 / -1}.footer-bottom{flex-direction:column}
+}
+@media(max-width:430px){.logo{font-size:.72rem}.logo-mark{width:25px;height:25px}.section-title{font-size:2.8rem}.intro-title{font-size:2.8rem}.footer-main{grid-template-columns:1fr}}
+@media(max-height:520px) and (orientation:landscape){.hero{min-height:650px}.hero-content{padding-top:100px}.hero h1{font-size:clamp(3rem,10vw,6rem)}.hero-meta{margin-top:25px}}
+@media(min-width:1800px){:root{--max:1650px}.hero h1{font-size:10vw}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body>
+
+<header class="nav" id="nav">
+<div class="nav-inner">
+<a href="#top" class="logo"><span class="logo-mark"></span><span>EASTERN DYNAMICS</span></a>
+<nav class="nav-links">
+<a href="#capabilities">Capabilities</a>
+<a href="#systems">Systems</a>
+<a href="#technology">Technology</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="nav-right">
+<a href="#contact" class="btn btn-primary nav-cta">Contact</a>
+<button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
+</div>
+</div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+<nav class="mobile-links">
+<a href="#capabilities">Capabilities</a>
+<a href="#systems">Systems</a>
+<a href="#technology">Technology</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+
+<main id="top">
+
+<section class="hero">
+<div class="hero-image"></div>
+<div class="stars"></div>
+<div class="hero-glow"></div>
+<div class="hero-grid"></div>
+<div class="orbit-line"></div>
+
+<div class="hero-content">
+<div class="hero-kicker"><span class="status"></span>EASTERN DYNAMICS / DEFENCE</div>
+<h1>ENGINEERED<br><span>FOR THE MISSION.</span></h1>
+<p class="hero-sub">Eastern Dynamics Space develops advanced technologies for spacecraft, orbital systems, Earth observation and the next generation of autonomous space infrastructure.</p>
+
+<div class="hero-buttons">
+<a href="#capabilities" class="btn btn-primary">Explore capabilities <span class="arrow">→</span></a>
+<a href="#technology" class="btn btn-ghost">Explore technology <span class="arrow">→</span></a>
+</div>
+
+<div class="hero-meta">
+<div>DOMAIN<strong>DEFENCE TECHNOLOGY</strong></div>
+<div>FOCUS<strong>MISSION SYSTEMS</strong></div>
+<div>BASE<strong>INDIA</strong></div>
+</div>
+</div>
+</section>
+
+<div class="ticker"><div class="ticker-track">
+<div class="ticker-item">Space Systems</div><div class="ticker-item">Advanced Sensing</div><div class="ticker-item">Aerospace Systems</div><div class="ticker-item">Autonomous Autonomous Systems</div><div class="ticker-item">Secure Technology</div><div class="ticker-item">Advanced Propulsion</div>
+<div class="ticker-item">Space Systems</div><div class="ticker-item">Advanced Sensing</div><div class="ticker-item">Aerospace Systems</div><div class="ticker-item">Autonomous Autonomous Systems</div><div class="ticker-item">Secure Technology</div><div class="ticker-item">Advanced Propulsion</div>
+</div></div>
+
+<section class="section intro" id="about">
+<div class="container"><div class="intro-layout reveal">
+<div><div class="eyebrow">THE DEFENCE DIVISION</div><h2 class="intro-title">BUILDING THE <em>TECHNOLOGY</em> BEHIND TOMORROW'S MISSIONS.</h2></div>
+<div class="intro-right"><p>Eastern Dynamics Defence develops advanced technologies for demanding environments. Our work spans autonomous systems, sensing, robotics, aerospace, secure technology and mission engineering.</p><a href="#systems" class="btn btn-ghost">Explore our systems <span class="arrow">→</span></a></div>
+</div></div>
+</section>
+
+<section class="section capabilities" id="capabilities">
+<div class="container">
+<div class="reveal"><div class="eyebrow">WHAT WE BUILD</div><h2 class="section-title">TECHNOLOGY<br>FOR THE MISSION.</h2><p class="section-copy">We combine software, electronics, autonomy, sensing and aerospace engineering to develop integrated technologies for demanding missions.</p></div>
+
+<div class="cap-grid">
+<article class="cap-card reveal"><div class="cap-number">01 / 06</div><div class="cap-icon">SAT</div><h3>Autonomous Systems</h3><p>Intelligent autonomy, navigation and decision systems for complex operational environments.</p></article>
+<article class="cap-card reveal"><div class="cap-number">02 / 06</div><div class="cap-icon">EO</div><h3>Advanced Sensing</h3><p>Sensor architectures and data fusion designed to transform complex environments into usable information.</p></article>
+<article class="cap-card reveal"><div class="cap-number">03 / 06</div><div class="cap-icon">AI</div><h3>Robotics</h3><p>Robotic platforms combining perception, control systems and autonomous operation.</p></article>
+<article class="cap-card reveal"><div class="cap-number">04 / 06</div><div class="cap-icon">ORB</div><h3>Aerospace Systems</h3><p>Engineering solutions for airborne and aerospace platforms operating in demanding conditions.</p></article>
+<article class="cap-card reveal"><div class="cap-number">05 / 06</div><div class="cap-icon">ENG</div><h3>Secure Technology</h3><p>Resilient computing, communications and systems architecture for mission-critical applications.</p></article>
+<article class="cap-card reveal"><div class="cap-number">06 / 06</div><div class="cap-icon">RX</div><h3>Mission Engineering</h3><p>Integrated engineering across hardware, software and operational requirements.</p></article>
+</div>
+</div>
+</section>
+
+<section class="section orbit-feature">
+<div class="container"><div class="earth-panel reveal">
+<div class="earth-content"><div class="earth-tag">EASTERN DYNAMICS / ENGINEERING</div><h2>FROM<br>CONCEPT<br>TO SYSTEM.</h2><p>We approach complex defence technology as a systems problem — integrating hardware, software, autonomy, sensing and human decision-making into coherent architectures.</p></div>
+</div></div>
+</section>
+
+<section class="section systems" id="systems">
+<div class="container">
+<div class="systems-header reveal">
+<div><div class="eyebrow">MISSION SYSTEMS</div><h2 class="section-title">BUILT AS<br>SYSTEMS.</h2></div>
+<p class="section-copy">Technology becomes valuable when independent components work together as one mission system.</p>
+</div>
+
+<div class="system-list">
+<div class="system reveal"><div class="system-no">01</div><div class="system-name">Uncrewed Platforms</div><div class="system-desc">Autonomous and remotely operated platforms for environments where persistence, reach and situational awareness matter.</div><div class="system-arrow">↗</div></div>
+<div class="system reveal"><div class="system-no">02</div><div class="system-name">Mission Systems</div><div class="system-desc">Integrated architectures connecting sensors, computation, communications and operators.</div><div class="system-arrow">↗</div></div>
+<div class="system reveal"><div class="system-no">03</div><div class="system-name">Advanced Sensing</div><div class="system-desc">Distributed sensing and data-fusion architectures for improved awareness.</div><div class="system-arrow">↗</div></div>
+<div class="system reveal"><div class="system-no">04</div><div class="system-name">Aerospace Technology</div><div class="system-desc">Engineering for airborne platforms and next-generation aerospace missions.</div><div class="system-arrow">↗</div></div>
+</div>
+</div>
+</section>
+
+<section class="stats"><div class="container"><div class="stats-grid">
+<div class="stat reveal"><div class="stat-number"><span class="counter" data-target="06">0</span></div><div class="stat-label">Defence technology domains</div></div>
+<div class="stat reveal"><div class="stat-number"><span class="counter" data-target="04">0</span></div><div class="stat-label">Core system areas</div></div>
+<div class="stat reveal"><div class="stat-number"><span class="counter" data-target="01">0</span></div><div class="stat-label">Integrated mission vision</div></div>
+<div class="stat reveal"><div class="stat-number"><span>∞</span></div><div class="stat-label">Engineering ambition</div></div>
+</div></div></section>
+
+<section class="section technology" id="technology">
+<div class="container"><div class="tech-layout">
+<div class="space-map reveal">
+<div class="map-orbit"></div><div class="map-earth"></div>
+<div class="map-node node-1"></div><div class="map-node node-2"></div><div class="map-node node-3"></div>
+<div class="map-label label-a">ORBITAL NODE</div><div class="map-label label-b">DATA LINK</div><div class="map-label label-c">SENSOR</div>
+</div>
+
+<div class="reveal"><div class="eyebrow">TECHNOLOGY</div><h2 class="section-title">INTELLIGENCE<br>AT THE EDGE.</h2>
+<p class="section-copy">Modern missions generate enormous amounts of information. Eastern Dynamics focuses on technologies that allow systems to perceive, process and respond with speed and precision.</p>
+<div class="tech-list">
+<div class="tech-item"><span>01</span>Artificial Intelligence</div>
+<div class="tech-item"><span>02</span>Sensor Fusion</div>
+<div class="tech-item"><span>03</span>Edge Computing</div>
+<div class="tech-item"><span>04</span>Navigation & Control</div>
+<div class="tech-item"><span>05</span>Secure Communications</div>
+</div>
+</div>
+</div></div>
+</section>
+
+<section class="cta" id="contact">
+<div class="cta-inner reveal"><div class="eyebrow">EASTERN DYNAMICS / DEFENCE</div><h2>BUILD WHAT<br>COMES NEXT.</h2>
+<p>We work with engineers, researchers and technology partners focused on solving difficult problems in defence and aerospace.</p>
+<a href="mailto:contact@easterndynamics.in" class="btn btn-primary">Start a conversation <span class="arrow">→</span></a>
+</div>
+</section>
+
+</main>
+
+<footer><div class="container"><div class="footer-main">
+<div class="footer-brand"><a href="#top" class="logo"><span class="logo-mark"></span><span>EASTERN DYNAMICS</span></a><p>Engineering advanced technology for defence, aerospace and strategic missions.</p></div>
+<div class="footer-column"><h4>Company</h4><a href="#about">About</a><a href="#technology">Technology</a><a href="#contact">Contact</a></div>
+<div class="footer-column"><h4>Space</h4><a href="#capabilities">Autonomous Systems</a><a href="#capabilities">Advanced Sensing</a><a href="#systems">Aerospace</a><a href="#technology">Robotics</a></div>
+<div class="footer-column"><h4>Eastern Dynamics</h4><a href="#">Defence</a><a href="#">Space</a><a href="#">Research</a><a href="#">Engineering</a></div>
+</div>
+<div class="footer-bottom"><span>© <span id="year"></span> EASTERN DYNAMICS</span><span>EASTERNDYNAMICS.IN</span><span>INDIA</span></div>
+</div></footer>
+
+<script>
+const nav=document.getElementById("nav");
+const menuBtn=document.getElementById("menuBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+
+function updateNav(){nav.classList.toggle("scrolled",window.scrollY>40)}
+window.addEventListener("scroll",updateNav,{passive:true});updateNav();
+
+function toggleMenu(){
+const open=mobileMenu.classList.toggle("open");
+document.body.classList.toggle("menu-open",open);
+menuBtn.setAttribute("aria-expanded",open?"true":"false");
+}
+menuBtn.addEventListener("click",toggleMenu);
+
+document.querySelectorAll(".mobile-links a").forEach(link=>{
+link.addEventListener("click",()=>{
+mobileMenu.classList.remove("open");
+document.body.classList.remove("menu-open");
+menuBtn.setAttribute("aria-expanded","false");
+});
+});
+
+const revealObserver=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+revealObserver.unobserve(entry.target);
+}
+});
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+
+const counters=document.querySelectorAll(".counter");
+const counterObserver=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(!entry.isIntersecting)return;
+const counter=entry.target;
+const target=parseInt(counter.dataset.target);
+const duration=1000;
+const start=performance.now();
+
+function animate(time){
+const progress=Math.min((time-start)/duration,1);
+const eased=1-Math.pow(1-progress,3);
+counter.textContent=String(Math.floor(target*eased)).padStart(2,"0");
+if(progress<1)requestAnimationFrame(animate);
+else counter.textContent=String(target).padStart(2,"0");
+}
+requestAnimationFrame(animate);
+counterObserver.unobserve(counter);
+});
+},{threshold:.8});
+counters.forEach(counter=>counterObserver.observe(counter));
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+anchor.addEventListener("click",function(e){
+const id=this.getAttribute("href");
+if(id==="#")return;
+const target=document.querySelector(id);
+if(!target)return;
+e.preventDefault();
+const position=target.getBoundingClientRect().top+window.scrollY-nav.offsetHeight;
+window.scrollTo({top:position,behavior:"smooth"});
+});
+});
+
+const heroImage=document.querySelector(".hero-image");
+if(window.matchMedia("(pointer:fine)").matches&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+window.addEventListener("mousemove",e=>{
+const x=(e.clientX/window.innerWidth-.5)*7;
+const y=(e.clientY/window.innerHeight-.5)*4;
+heroImage.style.transform=`scale(1.02) translate(${x}px,${y}px)`;
+});
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape"){
+mobileMenu.classList.remove("open");
+document.body.classList.remove("menu-open");
+menuBtn.setAttribute("aria-expanded","false");
+}
+});
+</script>
+</body>
+</html>
